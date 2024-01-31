@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,34 +55,34 @@ class HomeScreenBodyWidget extends StatelessWidget {
   }
 }
 
-class A {
-  final int age;
-  A({
-    required this.age,
-  });
+// class A {
+//   final int age;
+//   A({
+//     required this.age,
+//   });
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'age': age,
-    };
-  }
+//   Map<String, dynamic> toMap() {
+//     return <String, dynamic>{
+//       'age': age,
+//     };
+//   }
 
-  factory A.fromMap(Map<String, dynamic> map) {
-    return A(
-      age: map['age'] as int,
-    );
-  }
+//   factory A.fromMap(Map<String, dynamic> map) {
+//     return A(
+//       age: map['age'] as int,
+//     );
+//   }
 
-  String toJson() => json.encode(toMap());
+//   String toJson() => json.encode(toMap());
 
-  factory A.fromJson(String source) =>
-      A.fromMap(json.decode(source) as Map<String, dynamic>);
+//   factory A.fromJson(String source) =>
+//       A.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  A copyWith({
-    int? age,
-  }) {
-    return A(
-      age: age ?? this.age,
-    );
-  }
-}
+//   A copyWith({
+//     int? age,
+//   }) {
+//     return A(
+//       age: age ?? this.age,
+//     );
+//   }
+// }

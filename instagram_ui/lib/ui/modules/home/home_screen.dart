@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_ui/configs/app_theme.dart';
+import 'package:instagram_ui/configs/text_theme.dart';
+import 'package:instagram_ui/ui/common_blocs/bloc/theme_bloc.dart';
 import 'package:instagram_ui/ui/modules/home/bloc/home_bloc.dart';
 import 'package:instagram_ui/ui/modules/home/widgets/home_screen_body.dart';
 import 'package:instagram_ui/ui/modules/profile/profile_screen.dart';
@@ -28,7 +31,51 @@ class HomeScreen extends StatelessWidget {
               icon: const Icon(Icons.add_box_outlined),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Column(
+                        children: [
+                          ListTile(
+                            leading: const Icon(
+                                Icons.settings_system_daydream_rounded),
+                            title: Text(
+                              "System Theme",
+                              style: AppTextTheme.bodyMedium,
+                            ),
+                            subtitle: const Text("Switch to system theme"),
+                          ),
+                          ListTile(
+                            onTap: () {
+                              context.read<ThemeBloc>().add(
+                                  ThemeChangeRequested(
+                                      themeData: AppTheme.lightTheme));
+                            },
+                            leading: const Icon(Icons.light_mode_outlined),
+                            title: Text(
+                              "Light Theme",
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            subtitle: const Text("Switch to light theme"),
+                          ),
+                          ListTile(
+                            onTap: () {
+                              context.read<ThemeBloc>().add(
+                                  ThemeChangeRequested(
+                                      themeData: AppTheme.darkTheme));
+                            },
+                            leading: const Icon(Icons.dark_mode_outlined),
+                            title: Text(
+                              "Dark Theme",
+                              style: Theme.of(context).textTheme.displayLarge,
+                            ),
+                            subtitle: const Text("Switch to dark theme"),
+                          ),
+                        ],
+                      );
+                    });
+              },
               icon: const Icon(Icons.favorite_border_outlined),
             ),
             IconButton(

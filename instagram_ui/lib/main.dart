@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_ui/configs/app_theme.dart';
+import 'package:instagram_ui/ui/common_blocs/bloc/theme_bloc.dart';
 import 'package:instagram_ui/ui/modules/home/home_screen.dart';
 
 void main() {
@@ -10,9 +13,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      home: HomeScreen(),
+    return BlocProvider(
+      create: (context) => ThemeBloc()
+        ..add(
+          ThemeChangeRequested(themeData: AppTheme.lightTheme),
+        ),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            theme:
+                state is ThemeChanged ? state.themeData : AppTheme.lightTheme,
+            // darkTheme: AppTheme.darkTheme,
+            title: 'Flutter Demo',
+            home: const HomeScreen(),
+          );
+        },
+      ),
     );
   }
 }
