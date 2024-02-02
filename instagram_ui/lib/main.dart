@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_ui/configs/app_theme.dart';
 import 'package:instagram_ui/ui/common_blocs/bloc/theme_bloc.dart';
+import 'package:instagram_ui/ui/modules/add_books_distributed/add_book_distributed_page.dart';
 import 'package:instagram_ui/ui/modules/home/home_screen.dart';
 
 void main() {
@@ -25,7 +26,9 @@ class MyApp extends StatelessWidget {
                 state is ThemeChanged ? state.themeData : AppTheme.lightTheme,
             // darkTheme: AppTheme.darkTheme,
             title: 'Flutter Demo',
-            home: const HomeScreen(),
+            home: const AddDistributedBooksPage(
+
+            ),
           );
         },
       ),
