@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_ui/ui/modules/auth/login/repository/authentication_repository.dart';
 
 class UserDetailWidget extends StatelessWidget {
   const UserDetailWidget({
@@ -26,20 +27,22 @@ class UserDetailWidget extends StatelessWidget {
         //   ),
         // ),
         const SizedBox(width: 12),
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Text("Pubity"),
-                SizedBox(width: 12),
-                Icon(
+                Text(
+                  context.read<AuthenticationRepository>().getUserInfo().email,
+                ),
+                const SizedBox(width: 12),
+                const Icon(
                   Icons.check_circle,
                   size: 16,
                 )
               ],
             ),
-            Text(
+            const Text(
               "Sponsored",
               style: TextStyle(
                 fontSize: 12,
@@ -47,7 +50,7 @@ class UserDetailWidget extends StatelessWidget {
             ),
           ],
         ),
-    
+
         const Spacer(),
         IconButton(
           onPressed: () {},
