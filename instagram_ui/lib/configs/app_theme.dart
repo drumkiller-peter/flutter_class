@@ -21,6 +21,12 @@ class AppTheme {
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: AppColor.white,
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.amber,
+      selectedItemColor: AppColor.white,
+      unselectedItemColor: AppColor.black,
+    ),
+    canvasColor: AppColor.primaryColor,
   );
 
   static final darkTheme = ThemeData(

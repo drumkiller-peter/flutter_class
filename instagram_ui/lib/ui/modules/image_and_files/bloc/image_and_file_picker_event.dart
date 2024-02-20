@@ -1,6 +1,6 @@
-part of 'image_and_file_picker_bloc.dart';
+// part of 'image_and_file_picker_bloc.dart';
 
-@immutable
-sealed class ImageAndFilePickerEvent {}
+// @immutable
+// sealed class ImageAndFilePickerEvent {}
 
-final class ImageAndFilePickUpRequested extends ImageAndFilePickerEvent {}
+// final class ImageAndFilePickUpRequested extends ImageAndFilePickerEvent {}

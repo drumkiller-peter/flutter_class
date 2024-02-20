@@ -17,7 +17,10 @@ class BookDistributedBloc
       var bookList = List.generate(
         10,
         (index) => BookModel(
-            title: "Book Title $index", code: "code_$index", quantity: 0),
+            title: "Book Title $index",
+            code: "code_$index",
+            quantity: 0,
+            id: 10),
       );
       emit(BookDistributedSuccess(
         bookModelList: bookList,
@@ -38,7 +41,6 @@ class BookDistributedBloc
         emit(BookDistributedSuccess(
           bookModelList: temp,
           total: calculateTotal(temp),
-          
         ));
       } catch (e) {
         log(e.toString());

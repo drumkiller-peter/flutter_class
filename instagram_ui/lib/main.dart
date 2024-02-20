@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_ui/configs/app_theme.dart';
+import 'package:instagram_ui/configs/router/app_router.dart';
 import 'package:instagram_ui/ui/common_blocs/bloc/theme_bloc.dart';
 import 'package:instagram_ui/ui/modules/auth/login/bloc/authentication_bloc.dart';
-import 'package:instagram_ui/ui/modules/auth/login/login_screen.dart';
 import 'package:instagram_ui/ui/modules/auth/login/repository/authentication_repository.dart';
 
 void main() {
@@ -15,8 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => AuthenticationRepository(),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => AuthenticationRepository(),
+        ),
+        RepositoryProvider(
+          create: (context) => AppRouter(),
+        ),
+      ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -32,21 +39,38 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ],
-        child: BlocBuilder<ThemeBloc, ThemeState>(
-          builder: (context, state) {
-            return MaterialApp(
-              theme:
-                  state is ThemeChanged ? state.themeData : AppTheme.lightTheme,
-              // darkTheme: AppTheme.darkTheme,
-              title: 'Flutter Demo',
-              // home: const AddDistributedBooksPage(
+        // child: BlocBuilder<ThemeBloc, ThemeState>(
+        //   builder: (context, state) {
+        //     return MaterialApp.router(
+        //       theme:
+        //           state is ThemeChanged ? state.themeData : AppTheme.lightTheme,
+        //       // darkTheme: AppTheme.darkTheme,
+        //       title: 'Flutter Demo',
+        //       routerConfig: AppRouter.router,
 
-              // ),
-              // home: const ImageAndFilePickerScreen(),
+        //       // home: const AddDistributedBooksPage(
 
-              home: const LoginScreen(),
-            );
-          },
+        //       // ),
+        //       // home: const ImageAndFilePickerScreen(),
+
+        //       // home: const LoginScreen(),
+        //     );
+        //   },
+        // ),
+
+        child: MaterialApp.router(
+          theme: AppTheme.lightTheme,
+          // darkTheme: AppTheme.darkTheme,
+          title: 'Flutter Demo',
+          // routeInformationParser: AppRouter.router.routeInformationParser,
+          routerConfig: AppRouter.router,
+
+          // home: const AddDistributedBooksPage(
+
+          // ),
+          // home: const ImageAndFilePickerScreen(),
+
+          // home: const LoginScreen(),
         ),
       ),
     );

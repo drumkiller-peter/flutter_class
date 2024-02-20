@@ -25,10 +25,10 @@ class _AddDistributedBooksPageState extends State<AddDistributedBooksPage> {
         appBar: AppBar(
           backgroundColor: Colors.grey.shade300,
           title: const Text("Add Books Distributed"),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {},
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(Icons.arrow_back),
+          //   onPressed: () {},
+          // ),
           actions: const [Icon(Icons.search)],
         ),
         body: BlocBuilder<BookDistributedBloc, BookDistributedState>(

@@ -1,11 +1,14 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:instagram_ui/configs/app_theme.dart';
 import 'package:instagram_ui/configs/text_theme.dart';
 import 'package:instagram_ui/ui/common_blocs/bloc/theme_bloc.dart';
 import 'package:instagram_ui/ui/modules/home/bloc/home_bloc.dart';
 import 'package:instagram_ui/ui/modules/home/widgets/home_screen_body.dart';
-import 'package:instagram_ui/ui/modules/profile/profile_screen.dart';
 import 'package:instagram_ui/utils/app_snackbar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -79,13 +82,32 @@ class HomeScreen extends StatelessWidget {
               icon: const Icon(Icons.favorite_border_outlined),
             ),
             IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ProfileScreen(),
-                  ),
-                );
+              onPressed: () async {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const ProfileScreen(),
+                //   ),
+                // );
+                // context.go(AppRouter.home + AppRouter.aaddBooksDistributed);
+                // context.go("/profile");
+                context.go("/login");
+
+                File f = File("jsdjsd/asasas/");
+                var bytes = await f.readAsBytes();
+
+                var encodedString = base64Encode(bytes);
+
+                //Shared Prefrence ma save garxau.
+
+                // readFromSharedPrefrence();
+
+                var list = base64Decode(encodedString);
+
+                // Khali file banauxum;
+                 File file2 = File("");
+                file2.writeAsBytes(list);
+                Image.file(f);
               },
               icon: const Icon(Icons.send_outlined),
             ),

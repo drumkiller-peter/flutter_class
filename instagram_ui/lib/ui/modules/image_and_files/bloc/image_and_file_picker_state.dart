@@ -1,29 +1,29 @@
-part of 'image_and_file_picker_bloc.dart';
+// part of 'image_and_file_picker_bloc.dart';
 
-@immutable
-sealed class ImageAndFilePickerState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
+// @immutable
+// sealed class ImageAndFilePickerState extends Equatable {
+//   @override
+//   List<Object?> get props => [];
+// }
 
-final class ImageAndFilePickerInitial extends ImageAndFilePickerState {}
+// final class ImageAndFilePickerInitial extends ImageAndFilePickerState {}
 
-final class ImageAndFilePickerLoadInProgress extends ImageAndFilePickerState {}
+// final class ImageAndFilePickerLoadInProgress extends ImageAndFilePickerState {}
 
-final class ImageAndFilePickerFailure extends ImageAndFilePickerState {
-  final String errorMessage;
+// final class ImageAndFilePickerFailure extends ImageAndFilePickerState {
+//   final String errorMessage;
 
-  ImageAndFilePickerFailure({required this.errorMessage});
+//   ImageAndFilePickerFailure({required this.errorMessage});
 
-  @override
-  List<Object?> get props => [errorMessage];
-}
+//   @override
+//   List<Object?> get props => [errorMessage];
+// }
 
-final class ImageAndFilePickerFilePicked extends ImageAndFilePickerState {
-  final File? pickedFile;
+// final class ImageAndFilePickerFilePicked extends ImageAndFilePickerState {
+//   final File? pickedFile;
 
-  ImageAndFilePickerFilePicked({this.pickedFile});
+//   ImageAndFilePickerFilePicked({this.pickedFile});
 
-  @override
-  List<Object?> get props => [pickedFile];
-}
+//   @override
+//   List<Object?> get props => [pickedFile];
+// }
