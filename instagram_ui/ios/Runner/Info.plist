@@ -62,6 +62,17 @@
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 
+	<key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.645120312493-89ad11r8qi6ublgp25tp3m49civp8me2</string>
+            </array>
+        </dict>
+    </array>
 
 
 </dict>

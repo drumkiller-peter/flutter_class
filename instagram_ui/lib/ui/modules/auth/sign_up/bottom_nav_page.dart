@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.child});
+class BottomNavPage extends StatefulWidget {
+  const BottomNavPage({super.key, required this.child});
 
   final StatefulNavigationShell child;
 
@@ -10,10 +10,10 @@ class HomeScreen extends StatefulWidget {
   // final Widget child;
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<BottomNavPage> createState() => _BottomNavPageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BottomNavPageState extends State<BottomNavPage> {
   int currentIndex = 0;
 
   @override
@@ -26,41 +26,44 @@ class _HomeScreenState extends State<HomeScreen> {
               _setBottomNavItem(
                 currentIndex == 0,
                 'Home',
+                Icons.dashboard_outlined,
               ),
               _setBottomNavItem(
                 currentIndex == 1,
-                'My Library',
+                'Add Event',
+                Icons.add_business_outlined,
               ),
               _setBottomNavItem(
                 currentIndex == 2,
-                'Search',
+                'Events list',
+                Icons.event,
               ),
               _setBottomNavItem(
                 currentIndex == 3,
-                'Bible',
+                'Message',
+                Icons.chat_bubble_outline_rounded,
               ),
               _setBottomNavItem(
                 currentIndex == 4,
                 'More',
+                Icons.person_3_outlined,
               ),
             ],
             showUnselectedLabels: true,
             type: BottomNavigationBarType.fixed,
-            // onTap: (int idx) => _onItemTapped(idx, context),
             onTap: (index) {
               widget.child.goBranch(index);
-
             },
             currentIndex: widget.child.currentIndex),
       ),
     );
   }
 
-  BottomNavigationBarItem _setBottomNavItem(bool isSelected, String label) {
+  BottomNavigationBarItem _setBottomNavItem(
+      bool isSelected, String label, IconData icons) {
     return BottomNavigationBarItem(
-      icon: const Icon(Icons.home),
+      icon: Icon(icons),
       label: label,
     );
   }
-
 }

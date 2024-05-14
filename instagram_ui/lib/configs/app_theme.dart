@@ -7,6 +7,7 @@ class AppTheme {
 
   static final lightTheme = ThemeData(
     fontFamily: "Poppins",
+    colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primaryColor),
     scaffoldBackgroundColor: AppColor.white,
     textTheme: TextTheme(
       headlineLarge: AppTextTheme.headlineLarge,
@@ -22,11 +23,8 @@ class AppTheme {
       backgroundColor: AppColor.white,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Colors.amber,
-      selectedItemColor: AppColor.white,
       unselectedItemColor: AppColor.black,
     ),
-    canvasColor: AppColor.primaryColor,
   );
 
   static final darkTheme = ThemeData(

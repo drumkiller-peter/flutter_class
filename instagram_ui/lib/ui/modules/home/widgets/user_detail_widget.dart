@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instagram_ui/ui/modules/auth/login/repository/authentication_repository.dart';
 
 class UserDetailWidget extends StatelessWidget {
   const UserDetailWidget({
@@ -17,32 +15,23 @@ class UserDetailWidget extends StatelessWidget {
             "https://picsum.photos/200/300",
           ),
         ),
-        // ClipRRect(
-        //   borderRadius: BorderRadius.circular(100),
-        //   child: Image.network(
-        //     "https://picsum.photos/200/300",
-        //     height: 40,
-        //     width: 40,
-        //     fit: BoxFit.cover,
-        //   ),
-        // ),
         const SizedBox(width: 12),
-        Column(
+        const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Text(
-                  context.read<AuthenticationRepository>().getUserInfo().email,
+                  "HELLO",
                 ),
-                const SizedBox(width: 12),
-                const Icon(
+                SizedBox(width: 12),
+                Icon(
                   Icons.check_circle,
                   size: 16,
                 )
               ],
             ),
-            const Text(
+            Text(
               "Sponsored",
               style: TextStyle(
                 fontSize: 12,
@@ -50,7 +39,6 @@ class UserDetailWidget extends StatelessWidget {
             ),
           ],
         ),
-
         const Spacer(),
         IconButton(
           onPressed: () {},

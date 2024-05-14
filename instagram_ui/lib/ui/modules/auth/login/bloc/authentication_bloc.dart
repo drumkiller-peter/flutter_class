@@ -16,8 +16,6 @@ class AuthenticationBloc
       // afno logic
       await Future.delayed(const Duration(seconds: 2));
 
-      await authenticationRepository.saveUserInfo(event.email, event.password);
-
       emit(AuthenticationSuccess(message: "Login Success"));
     });
   }
