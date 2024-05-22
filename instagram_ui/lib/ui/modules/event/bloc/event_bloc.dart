@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_ui/configs/di/dependency_injector.dart';
 import 'package:instagram_ui/ui/modules/event/event_model.dart';
 import 'package:instagram_ui/ui/modules/event/event_repo.dart';
 
@@ -8,7 +9,7 @@ part 'event_event.dart';
 part 'event_state.dart';
 
 class EventBloc extends Bloc<EventEvent, EventState> {
-  EventBloc({required this.eventRepository}) : super(const EventState()) {
+  EventBloc() : super(const EventState()) {
     on<AddEvent>((event, emit) async {
       try {
         emit(state.copyWith(error: null));
@@ -90,5 +91,5 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     });
   }
 
-  final EventRepository eventRepository;
+  final EventRepository eventRepository = getIt.get<EventRepository>();
 }

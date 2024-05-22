@@ -32,7 +32,7 @@ class DashboardPage extends StatelessWidget {
                       onPressed: () async {
                         await _googleSignInRepository
                             .createUserWithEmailPassword(
-                                "bhai@abc.com", "password123");
+                                "ooaooasjoasas@abc.com", "password123");
                       },
                       child: const Text("Sign up With Email/Password"),
                     ),

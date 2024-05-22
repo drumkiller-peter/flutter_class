@@ -49,6 +49,7 @@ class AuthenticationRepository {
   /// authentication methods instead of just one.
   Future<void> createUserWithEmailPassword(
       String email, String password) async {
+    UserModel? userModel;
     try {
       final UserCredential response = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -57,18 +58,17 @@ class AuthenticationRepository {
       if (user == null) {
         throw Exception('User is null');
       }
-
-      final AuthCredential emailAuthCredential =
-          EmailAuthProvider.credential(email: email, password: password);
-
-      await user.linkWithCredential(emailAuthCredential);
-      await saveUser(UserModel(
+      userModel = UserModel(
         email: email,
         password: password,
         uid: user.uid,
-      ));
+      );
+
+      await saveUser(userModel);
     } on FirebaseAuthException catch (e) {
-      print("Exception has occurred: $e");
+      print("Exception has occurred: $e ${e.code}");
+    } on FirebaseException catch (e) {
+      print("Exception has occurred in createUserWithEmailPassword: $e");
     }
   }
 

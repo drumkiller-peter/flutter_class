@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_ui/configs/app_theme.dart';
+import 'package:instagram_ui/configs/di/dependency_injector.dart';
 import 'package:instagram_ui/configs/router/app_router.dart';
 import 'package:instagram_ui/firebase_options.dart';
 import 'package:instagram_ui/ui/common_blocs/bloc/theme_bloc.dart';
@@ -15,6 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setup();
 
   runApp(const MyApp());
 }
@@ -51,9 +53,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           BlocProvider(
-            create: (context) => EventBloc(
-              eventRepository: context.read<EventRepository>(),
-            )..add(GetEvent()),
+            create: (context) => getIt.get<EventBloc>()..add(GetEvent()),
           ),
         ],
         child: MaterialApp.router(

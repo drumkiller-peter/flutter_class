@@ -60,6 +60,7 @@ class AppRouter {
                     key: state.pageKey,
                   ),
                 ),
+                
               ),
             ],
           ),
@@ -68,6 +69,7 @@ class AppRouter {
               GoRoute(
                 path: notification,
                 builder: (context, state) => const EventPage(),
+                
               ),
             ],
           ),
