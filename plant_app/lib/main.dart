@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/app_router.dart';
+import 'package:plant_app/configs/router/app_router.dart';
 import 'package:plant_app/configs/di/service_locator.dart';
 
 void main() {
