@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_app/presentation/animations/animation_example.dart';
 import 'package:plant_app/presentation/animations/animation_page.dart';
 import 'package:plant_app/presentation/cart_page.dart';
-import 'package:plant_app/presentation/page1.dart';
+import 'package:plant_app/presentation/home_page.dart';
 import 'package:plant_app/presentation/page2.dart';
 
 class AppRouter {
@@ -13,14 +13,14 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const HomePage(),
-        routes: [
-          GoRoute(
-              path: 'productDetail',
-              builder: (context, state) => const ProductDetailPage(),
-              routes: [
-                _cart(),
-              ]),
+        builder: (context, state) => const HomeScreen(),
+        routes: const [
+          // GoRoute(
+          //     path: 'productDetail',
+          //     builder: (context, state) => const ProductDetailPage(),
+          //     routes: [
+          //       _cart(),
+          //     ]),
         ],
       ),
       GoRoute(
