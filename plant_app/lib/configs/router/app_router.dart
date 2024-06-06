@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_app/presentation/animations/animation_example.dart';
 import 'package:plant_app/presentation/animations/animation_page.dart';
 import 'package:plant_app/presentation/cart_page.dart';
-import 'package:plant_app/presentation/home_page.dart';
 import 'package:plant_app/presentation/page2.dart';
+import 'package:plant_app/presentation/valorant/v_account_page.dart';
 
 class AppRouter {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -13,7 +13,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const HomeScreen(),
+        builder: (context, state) => const VAccountPage(),
         routes: const [
           // GoRoute(
           //     path: 'productDetail',

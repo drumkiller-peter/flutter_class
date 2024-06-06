@@ -12,7 +12,7 @@ class DioHelper {
   Dio dio = getIt.get<Dio>();
 
   void addInterceptor() {
-    dio.interceptors.add(AuthInterceptor());
+    // dio.interceptors.add(AuthInterceptor());
     dio.interceptors.add(LogInterceptor());
   }
 }
@@ -74,7 +74,6 @@ class AuthInterceptor extends Interceptor {
       if (response.statusCode == 200) {
         // Assuming the response contains a new access token in the 'access_token' field
         _refreshToken = response.data['access_token'];
-
       } else {
         throw Exception("Failed to refresh token");
       }

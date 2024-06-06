@@ -14,7 +14,6 @@ class HomeRepository {
 
     var response = await _dio.get(
       AppConstants.posts,
-      // "${AppConstants.posts}?_page=2&_limit=15",
       queryParameters: {
         "_page": 4,
         "_limit": 15,
@@ -26,12 +25,6 @@ class HomeRepository {
         },
       ),
     );
-
-    /// get
-    /// post
-    /// delete
-    /// put -> update
-    /// patch -> update
 
     if (response.statusCode == HttpStatus.ok) {
       final data = response.data;
@@ -45,17 +38,58 @@ class HomeRepository {
     return posts;
   }
 
-  Future<void> addPost() async {
-    var response = await _dio.post(
-      "posts",
-      data: {
-        "title": "foo",
-        "body": "bar",
-        "userId": -1,
-      },
-    );
-    log(response.data.toString());
+  Future<ResponseTypeEnum> addPost(PostModel postModel) async {
+    try {
+      print(postModel.toJson());
+      final res = await _dio.post(
+        AppConstants.posts,
+        data: postModel.toJson(),
+      );
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        return ResponseTypeEnum.success;
+      }
+      return ResponseTypeEnum.failure;
+    } catch (e) {
+      // return  ResponseTypeEnum.failure;
+      rethrow;
+    }
+  }
 
-    // getHomeScreenData("1");
+  Future<ResponseTypeEnum> updatedPost(int id) async {
+    try {
+      // print(postModel.toJson());
+      final res = await _dio.put(
+        AppConstants.posts,
+        data: {
+          "id": id,
+        },
+      );
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        return ResponseTypeEnum.success;
+      }
+      return ResponseTypeEnum.failure;
+    } catch (e) {
+      // return  ResponseTypeEnum.failure;
+      rethrow;
+    }
+  }
+
+  /// endpoint ==>  /posts/:id/comments/:id/something
+
+  Future<ResponseTypeEnum> deletePost(int id) async {
+    try {
+      final res = await _dio.delete(
+        "${AppConstants.posts}/$id",
+      );
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        return ResponseTypeEnum.success;
+      }
+      return ResponseTypeEnum.failure;
+    } catch (e) {
+      // return  ResponseTypeEnum.failure;
+      rethrow;
+    }
   }
 }
+
+enum ResponseTypeEnum { success, failure }

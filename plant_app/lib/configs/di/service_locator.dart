@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:plant_app/configs/constants/api_constants.dart';
 import 'package:plant_app/configs/constants/app_constatnts.dart';
+import 'package:plant_app/data/repository/home_repository.dart';
+import 'package:plant_app/data/repository/valorant_repository.dart';
 import 'package:plant_app/models/animal.dart';
 import 'package:plant_app/services/dio_helper.dart';
 
@@ -12,14 +15,17 @@ void setup() {
   getIt.registerFactory<NewAnimalClass>(() => NewAnimalClass(name: "Elephant"));
   getIt.registerSingleton<Dio>(Dio(
     BaseOptions(
-      baseUrl: AppConstants.baseUrl,
+      baseUrl: ApiConstants.baseUrl,
       connectTimeout: const Duration(seconds: 6000),
       receiveTimeout: const Duration(seconds: 6000),
-      headers: {"Content-Type": "application/json",
-      "Authorization": "Bearer _accessToken",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": AppConstants.vKey,
       },
     ),
   ));
 
   getIt.registerSingleton<DioHelper>(DioHelper());
+  getIt.registerSingleton<HomeRepository>(HomeRepository());
+  getIt.registerSingleton<ValorantRepository>(ValorantRepository());
 }
