@@ -1,16 +1,28 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:plant_app/configs/constants/api_constants.dart';
-import 'package:plant_app/configs/constants/app_constatnts.dart';
+import 'package:plant_app/data/cache/news_cache.dart';
+import 'package:plant_app/data/db/app_database.dart';
+import 'package:plant_app/data/db/news/news_dao.dart';
 import 'package:plant_app/data/repository/home_repository.dart';
+import 'package:plant_app/data/repository/news_repository.dart';
 import 'package:plant_app/data/repository/valorant_repository.dart';
 import 'package:plant_app/models/animal.dart';
 import 'package:plant_app/services/dio_helper.dart';
+import 'package:plant_app/services/fcm_notification_helper.dart';
 
 final getIt = GetIt.instance;
 
-void setup() {
-  // getIt.registerSingleton<AnimalRepository>(AnimalRepository());
+Future<void> setup() async {
+  await Hive.initFlutter();
+
+  getIt.registerSingleton<FCMNotificationHelper>(FCMNotificationHelper());
+  getIt.registerSingleton<AppDatabase>(AppDatabase());
+  getIt.registerLazySingleton<NewsDao>(
+      () => NewsDao(GetIt.I.get<AppDatabase>()));
   getIt.registerLazySingleton<AnimalRepository>(() => AnimalRepository("dog"));
   getIt.registerFactory<NewAnimalClass>(() => NewAnimalClass(name: "Elephant"));
   getIt.registerSingleton<Dio>(Dio(
@@ -20,10 +32,11 @@ void setup() {
       receiveTimeout: const Duration(seconds: 6000),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": AppConstants.vKey,
       },
     ),
   ));
+  getIt.registerSingleton<NewsCache>(NewsCache());
+  getIt.registerSingleton<NewsRepository>(NewsRepository());
 
   getIt.registerSingleton<DioHelper>(DioHelper());
   getIt.registerSingleton<HomeRepository>(HomeRepository());

@@ -45,6 +45,19 @@ dependencies:
   dio: ^5.4.3+1
   flutter_bloc: ^8.1.5
   equatable: ^2.0.5
+  uuid: ^4.4.0
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+## For local DB
+  drift: ^2.18.0
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.0.0
+  path: ^1.9.0
+  firebase_messaging: ^15.0.1
+  firebase_core: ^3.1.0
+  flutter_local_notifications: ^17.1.2
+## Ends
+
 
 
 dev_dependencies:
@@ -57,9 +70,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
-  build_runner: ^2.4.9
   freezed: ^2.5.2
   json_serializable: ^6.8.0
+  drift_dev: ^2.18.0
+  build_runner: ^2.4.9
 
 
 # For information on the generic Dart part of this file, see the

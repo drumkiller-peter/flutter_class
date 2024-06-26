@@ -12,7 +12,7 @@ class DioHelper {
   Dio dio = getIt.get<Dio>();
 
   void addInterceptor() {
-    // dio.interceptors.add(AuthInterceptor());
+    dio.interceptors.add(AuthInterceptor());
     dio.interceptors.add(LogInterceptor());
   }
 }
@@ -26,22 +26,18 @@ class LogInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log('RESPONSE[${response.statusCode}] ${response.requestOptions.path}');
-
-    //  ${response.headers}\n ${response.data}
+    // log('RESPONSE[${response.statusCode}] ${response.requestOptions.path} ${response.data}');
     super.onResponse(response, handler);
   }
 }
 
 class AuthInterceptor extends Interceptor {
   Dio dio = getIt.get<Dio>();
-  final String _accessToken =
-      "YOUR_ACCESS_TOKEN"; // Assume this is securely stored and initialized elsewhere
   String _refreshToken = "YOUR_REFRESH_TOKEN";
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['Authorization'] = 'Bearer $_accessToken';
+    options.headers['X-Api-Key'] = 'ec57d0f4f9084603aee20e64b9f7d4f0';
     return super.onRequest(options, handler);
   }
 

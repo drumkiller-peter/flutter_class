@@ -39,9 +39,7 @@ class _AnimationExampleState extends State<AnimationExample>
 
     _animation =
         Tween<double>(begin: 0.0, end: 2 * pi).animate(animationController);
-    // animationController.addListener(() {
-    //   print(_animation.value);
-    // });
+
 
     animationController.forward();
   }
